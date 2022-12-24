@@ -23,4 +23,9 @@ PluginMetrics/
 !whitelist.json
 !config.yml
 
-.DS_Store
+# logging
+*.log.gz
+*.log
+
+# jar files
+*.jar
