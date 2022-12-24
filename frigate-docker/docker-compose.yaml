@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  frigate:
+    container_name: frigate
+    privileged: true # this may not be necessary for all setups
+    restart: unless-stopped
+    image: blakeblackshear/frigate:stable-amd64
+    shm_size: "64mb" # update for your cameras based on calculation above
+    devices:
+      - "/dev/dri/renderD128" # for intel hwaccel
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb # for google coral
+      - /etc/localtime:/etc/localtime:ro
+      - /var/services/homes/langestefan/docker_apps/frigate/config.yml:/config/config.yml:ro
+      - /var/services/homes/langestefan/docker_apps/frigate/storage:/media/frigate
+      - type: tmpfs # Optional: 1GB of memory, reduces SSD/SD Card wear
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
+    ports:
+      - "6001:5000" #"5000:5000"
+      - "1935:1935" # RTMP feeds
+    environment:
+      - FRIGATE_RTSP_PASSWORD="${RTSP_PASSWORD}"
+      - LIBVA_DRIVER_NAME_JELLYFIN=i965 # if hwacl isn't working properly with the defaul iHD driver      

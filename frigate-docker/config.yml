@@ -1,0 +1,107 @@
+mqtt:
+  host: 192.168.50.184
+  user: mqtt
+  password: zhg5CuheTX
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+cameras:
+  woonkamer: # <------ Name the camera
+    ffmpeg:
+      inputs:
+        - path: rtsp://foscam:largerabbit3@192.168.50.196:88/videoMain  # rtsp://10.0.10.10:554/rtsp # <----- Update for your camera
+          roles:
+            - detect
+            - rtmp
+            - record
+    rtmp:
+      enabled: True # <-- RTMP should be disabled if your stream is not H264
+    detect:
+      width: 1920 
+      height: 1080 
+    zones:
+      schuur:
+        coordinates: 683,852,766,865,1126,788,1123,424,709,198    
+      achterdeur:
+        coordinates: 117,781,548,830,582,148,319,0,195,0    
+      kamer:
+        coordinates: 1920,1043,1920,149,1132,143,1137,792,905,886    
+
+#  esp32_stefan: # <------ Name the camera
+#    ffmpeg:
+#      inputs:
+#        - path: http://192.168.50.228:8080/  # rtsp://10.0.10.10:554/rtsp # <----- Update for your camera
+#          input_args: -avoid_negative_ts make_zero -fflags nobuffer -flags low_delay -strict experimental -fflags #+genpts+discardcorrupt -use_wallclock_as_timestamps 1
+#          roles:
+#            - detect
+#            - rtmp
+#            - record
+#    rtmp:
+#      enabled: True # <-- RTMP should be disabled if your stream is not H264
+#    detect:
+#      width: 800  
+#      height: 600 
+
+record:
+  enabled: True
+  events:
+    retain:
+      default: 10
+
+objects:
+  # Optional: list of objects to track from labelmap.txt (default: shown below)
+  track:
+    - person
+    - car
+    - bus
+    - motorcycle
+    - airplane
+    - bicycle
+    - dog
+    - cat
+    - bird
+  filters:
+    airplane:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    bicycle:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    bird:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1414,521,1564,511,1539,422,1406,422
+        - 1507,21,1677,0,1707,101,1514,135        
+    bus:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    car:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    cat:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    dog:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    motorcycle:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+    person:
+      mask:
+        - 1229,563,1227,707,1499,713,1513,563
+        - 1507,21,1677,0,1707,101,1514,135        
+        
+motion:
+  mask:
+    - 143,505,153,390,209,398,225,470     
