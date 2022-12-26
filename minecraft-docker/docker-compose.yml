@@ -32,51 +32,13 @@ services:
       ONLINE_MODE: "FALSE"
       USE_AIKAR_FLAGS: "TRUE"
       TYPE: "${MC_SERVER_TYPE}"
-      MAX_MEMORY: "2G"      
+      MAX_MEMORY: "1G"      
       SPIGET_RESOURCES: 19254,27448,34315,1997,49425 # 49425 is the spigot resource id for the DeluxeHub 3 plugin
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: "TRUE"
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-hub:/data
-    networks:
-      - minecraft
-
-  # factions, the main server, where players can play factions
-  mc-factions:
-    container_name: mc-factions
-    image: itzg/minecraft-server
-    stdin_open: true
-    expose:
-      - "25565"
-    environment:
-      SERVER_NAME: "Factions"
-      EULA: "TRUE"
-      ONLINE_MODE: "FALSE"
-      USE_AIKAR_FLAGS: "TRUE"
-      TYPE: "${MC_SERVER_TYPE}"
-      SPIGET_RESOURCES: 19254,27448,34315,1997
-    volumes:
-      - ./common/ops.json:/data/config/ops.json
-      - ./mc-factions:/data
-    networks:
-      - minecraft
-
-  # skyblock, the skyblock server, where players can play skyblock
-  mc-skyblock:
-    container_name: mc-skyblock
-    image: itzg/minecraft-server
-    stdin_open: true
-    expose:
-      - "25565"
-    environment:
-      SERVER_NAME: "Skyblock"
-      EULA: "TRUE"
-      ONLINE_MODE: "FALSE"
-      USE_AIKAR_FLAGS: "TRUE"
-      TYPE: "${MC_SERVER_TYPE}"
-      SPIGET_RESOURCES: 19254,27448,34315,1997
-    volumes:
-      - ./common/ops.json:/data/config/ops.json
-      - ./mc-skyblock:/data
     networks:
       - minecraft
 
@@ -93,27 +55,16 @@ services:
       ONLINE_MODE: "FALSE"
       USE_AIKAR_FLAGS: "TRUE"
       TYPE: "${MC_SERVER_TYPE}"
+      MAX_MEMORY: "1G"      
       ENFORCE_WHITELIST: "TRUE"
-      #Downloads from spigot, viaversion, viabackwards, vault, protocollib - in order - these should be relatively ok to autodownload, as requires spigot build approvals?
       SPIGET_RESOURCES: 19254,27448,34315,1997
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: "TRUE"
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-build:/data
     networks:
       - minecraft
-
-  mariadb:
-    container_name: mariadb
-    image:  bitnami/mariadb:latest
-    ports:
-      - '3307:3306'
-    volumes:
-      - 'mariadb:/bitnami/mariadb'
-    environment:
-      - MARIADB_USER=${MARIADB_USER}
-      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
-      - MARIADB_DATABASE=${MARIADB_DATABASE}
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       
 networks:
   minecraft:
