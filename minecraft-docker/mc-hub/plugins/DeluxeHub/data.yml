@@ -1,0 +1,22 @@
+chat_locked: false
+spawn:
+  ==: org.bukkit.Location
+  world: world
+  x: -13.580830761497497
+  y: 112.0
+  z: -3.3618855687996287
+  pitch: 78.449905
+  yaw: -0.15661621
+holograms:
+  welcome:
+    location:
+      ==: org.bukkit.Location
+      world: world
+      x: -17.0225924980368
+      y: 111.0
+      z: -7.145936903191331
+      pitch: 41.849854
+      yaw: 135.00021
+    lines:
+    - Welcome!
+    - I hope you enjoy your stay

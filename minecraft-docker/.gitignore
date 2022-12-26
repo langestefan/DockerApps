@@ -1,17 +1,7 @@
 # Exclude generated minecraft server stuff,
 # include hand crafted server configuration
-/mc-*/*
 /bungeecord/*
 PluginMetrics/
-
-/mc-*/plugins/*
-!/mc-*/plugins
-!/mc-*/plugins/*.jar
-
-/mc-*/plugins/WorldGuard/*
-!WorldGuard
-
-!AdvancedPortals
 
 !banned-ips.json
 !banned-players.json
@@ -29,3 +19,14 @@ PluginMetrics/
 
 # jar files
 *.jar
+
+# worlds
+mc-*/world*
+
+# plugins
+mc-*/eula.txt
+mc-*/usercache.json
+mc-*/version_history.json
+*-version.json
+tmp/
+lastupdate
