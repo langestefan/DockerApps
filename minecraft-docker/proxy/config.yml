@@ -40,8 +40,8 @@ log_pings: true
 connection_throttle_limit: 3
 server_connect_timeout: 5000
 timeout: 30000
+stats: 71355b89-f96f-46b4-ade0-7451cc962c70
 player_limit: 10
-prevent_proxy_connections: false
 ip_forward: true
 groups:
   SpydeRL:
@@ -50,7 +50,7 @@ groups:
 remote_ping_timeout: 5000
 connection_throttle: 4000
 log_commands: false
-stats: 71355b89-f96f-46b4-ade0-7451cc962c70
+prevent_proxy_connections: false
 online_mode: true
 forge_support: true
 disabled_commands:
@@ -60,7 +60,11 @@ servers:
     motd: '&c&lMinecraft'
     address: mc-hub:25565
     restricted: false
-  build:
-    motd: '&c&lBuild'
-    address: mc-build:25565
+  creative:
+    motd: '&c&lCreative'
+    address: mc-creative:25565
+    restricted: false
+  survival:
+    motd: '&c&Survival'
+    address: mc-survival:25565
     restricted: false

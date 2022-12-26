@@ -1,5 +1,4 @@
 version: "3.9"
-
 services:
 
   # proxy, used to connect to all the servers via a single bungeecord instance
@@ -36,21 +35,22 @@ services:
       SPIGET_RESOURCES: 19254,27448,34315,1997,49425 # 49425 is the spigot resource id for the DeluxeHub 3 plugin
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: "TRUE"
+      MODE: "creative"
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-hub:/data
     networks:
       - minecraft
 
-  # build, the build server, where players can build
-  mc-build:
-    container_name: mc-build
+  # creative, for playing creative 
+  mc-creative:
+    container_name: mc-creative
     image: itzg/minecraft-server
     stdin_open: true
     expose:
       - "25565"
     environment:
-      SERVER_NAME: "Build"
+      SERVER_NAME: "creative"
       EULA: "TRUE"
       ONLINE_MODE: "FALSE"
       USE_AIKAR_FLAGS: "TRUE"
@@ -60,16 +60,38 @@ services:
       SPIGET_RESOURCES: 19254,27448,34315,1997
       MAX_TICK_TIME: "-1"
       ENABLE_AUTOPAUSE: "TRUE"
+      MODE: "creative"
     volumes:
       - ./common/ops.json:/data/config/ops.json
-      - ./mc-build:/data
+      - ./mc-creative:/data
+    networks:
+      - minecraft
+
+  # survival, the survival server, where players can play survival
+  mc-survival:
+    container_name: mc-survival
+    image: itzg/minecraft-server
+    stdin_open: true
+    expose:
+      - "25565"
+    environment:
+      SERVER_NAME: "Survival"
+      EULA: "TRUE"
+      ONLINE_MODE: "FALSE"
+      USE_AIKAR_FLAGS: "TRUE"
+      TYPE: "${MC_SERVER_TYPE}"
+      MAX_MEMORY: "1G"      
+      ENFORCE_WHITELIST: "TRUE"
+      SPIGET_RESOURCES: 19254,27448,34315,1997
+      MAX_TICK_TIME: "-1"
+      ENABLE_AUTOPAUSE: "TRUE"
+      MODE: "survival"
+    volumes:
+      - ./common/ops.json:/data/config/ops.json
+      - ./mc-survival:/data
     networks:
       - minecraft
       
 networks:
   minecraft:
     driver: bridge
-
-volumes:
-  worlds:
-  mariadb:
