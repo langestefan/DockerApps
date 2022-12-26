@@ -12,7 +12,7 @@
 
 settings:
   debug: false
-  timeout-time: 60
+  timeout-time: 600
   restart-on-crash: true
   restart-script: ./start.sh
   bungeecord: true
@@ -143,8 +143,8 @@ world-settings:
       other-multiplier: 0.0
     max-tnt-per-tick: 100
     max-tick-time:
-      tile: 50
-      entity: 50
+      tile: 1000
+      entity: 1000
     growth:
       cactus-modifier: 100
       cane-modifier: 100

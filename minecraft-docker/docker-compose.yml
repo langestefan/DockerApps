@@ -33,9 +33,11 @@ services:
       TYPE: "${MC_SERVER_TYPE}"
       MAX_MEMORY: "1G"      
       SPIGET_RESOURCES: 19254,27448,34315,1997,49425 # 49425 is the spigot resource id for the DeluxeHub 3 plugin
-      MAX_TICK_TIME: "-1"
+      MAX_TICK_TIME: -1
       ENABLE_AUTOPAUSE: "TRUE"
       MODE: "creative"
+      USE_SIMD_FLAGS: "TRUE"
+    restart: always
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-hub:/data
@@ -58,9 +60,11 @@ services:
       MAX_MEMORY: "1G"      
       ENFORCE_WHITELIST: "TRUE"
       SPIGET_RESOURCES: 19254,27448,34315,1997
-      MAX_TICK_TIME: "-1"
+      MAX_TICK_TIME: -1
       ENABLE_AUTOPAUSE: "TRUE"
       MODE: "creative"
+      USE_SIMD_FLAGS: "TRUE"
+    restart: always
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-creative:/data
@@ -83,9 +87,11 @@ services:
       MAX_MEMORY: "1G"      
       ENFORCE_WHITELIST: "TRUE"
       SPIGET_RESOURCES: 19254,27448,34315,1997
-      MAX_TICK_TIME: "-1"
+      MAX_TICK_TIME: -1
       ENABLE_AUTOPAUSE: "TRUE"
       MODE: "survival"
+      USE_SIMD_FLAGS: "TRUE"
+    restart: always
     volumes:
       - ./common/ops.json:/data/config/ops.json
       - ./mc-survival:/data
